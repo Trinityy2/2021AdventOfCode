@@ -1,6 +1,7 @@
 from copy import deepcopy
 
 def find_common(list, co2=False):
+    print(f'starting with list: {list}')
     length_of_binary = len(list[0])
     current_sum = [0] * length_of_binary
     
@@ -16,11 +17,12 @@ def find_common(list, co2=False):
         if not co2:
             final_binary[col] = 0 if current_sum[col] < line_count_half else 1
         else:
-            if not (current_sum[col] != 0 or current_sum[col] == len(list)):
+            if not (int(current_sum[col]) != 0 or int(current_sum[col]) == len(list)):
                 final_binary[col] = 0 if current_sum[col] <= line_count_half else 1
             else:
-                current_sum[col] = 0 if current_sum[col] != 0 else 1
+                final_binary[col] = 0 if current_sum[col] != 0 else 1
 
+    print(f'common found: {final_binary}')
     return final_binary
 
 def binary_calculate(binary):
@@ -35,36 +37,15 @@ def binary_calculate(binary):
     return res
 
 def get_split(list, search_term, position):
-    # list is already sorted in ascending order
-    # print(f'list: {list}, search: {search_term}, pos: {position}')
-    direction = None
-    dir_range = None
-    # print(f"search term pos: {search_term[position]}")
-    if int(search_term[position]) == 0:
-        # print("up")
-        #start from top
-        dir_range = range(0, len(list))
-        direction = "up"
-    else:
-        # print('down')
-        dir_range = range(len(list)-1, 0, -1)
-        direction = "down"
-
-    list_pos = 0
-    for i in dir_range:
-        if int(list[i][position]) != int(search_term[position]):
-            list_pos = i
-            break
-
-    # This extra conditional is here because we might accidentally have gotten the least common wrong
-    result = list[:list_pos] if direction == 'up' else list[list_pos + 1:]
-    # if result:
-    #     return result
-    # else:
-    #     return list
+    result = []
+    for x in list:
+        print(x[position], search_term[position])
+        if int(x[position]) == int(search_term[position]):
+            print("Found to be true")
+            result.append(x)
     return result
 
-file = open("input.txt")
+file = open("testinput.txt")
 all_values = []
 
 for line in file:
@@ -91,7 +72,10 @@ list_copy = sorted(deepcopy(all_values))
 pos = 0
 while len(list_copy) != 1:
     flipped = [0 if int(x) else 1 for x in find_common(list_copy, co2=True)]
+    print("flipped", flipped)
+    print(f"before: {list_copy}")
     list_copy = get_split(list_copy, flipped, pos)
+    print(f"after: {list_copy}")
     pos += 1
 
 co2 = binary_calculate(list_copy[0])
