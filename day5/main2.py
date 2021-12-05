@@ -27,7 +27,7 @@ def check_valid(x: tuple, y:tuple):
 
     return False
 
-coords = [] # Stores A and B (two coordinates) as a tuple in a dictionary
+coords = [] # Stores A and B as a tuple (x,y) in a dictionary
 for line in file:
     line = line.split(' -> ')
     a = line[0].split(',')
@@ -94,8 +94,6 @@ def draw(table, coorda, coordb):
                 table[coorda[1]][i] +=  1
     else:
         for coord in dlist:
-            if coord[0] == (2,4):
-                print('hello')
             table[coord[1]][coord[0]] += 1
 
 for coord in coords:
@@ -108,8 +106,4 @@ for y in range(highesty+1):
         if graph[x][y] > 1:
             intersection += 1
 print("score", intersection)
-
-# print(draw(graph, coords[0]['a'], coords[0]['b']))
-# for x in graph:
-#     print(x)
     
