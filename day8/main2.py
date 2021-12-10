@@ -40,7 +40,8 @@ def get_complex_numbers(enc_numbers, easy_numbers, pattern):
             enc_numbers[pattern] = 3
         elif len(onefourinverse.intersection(patternset)) == 2:
             enc_numbers[pattern] = 5
-        else: enc_numbers[pattern] = 2
+        else:
+            enc_numbers[pattern] = 2
     else:
         # pattern length is 6, meaning its either 0, 6 or 9
         fourset = set(easy_numbers[4])
@@ -62,11 +63,6 @@ def get_encoded(enc_numbers, patterns):
             get_from_length(enc_numbers, easy_numbers, pattern)
         else:
             # # Keep these for later as we got to figure out the obvious ones first
-            # if len(pattern) == 5:
-            #     complex_numbers[5].append(pattern)
-            # else:
-            #     #len of 6:
-            #     complex_numbers[6].append(pattern)
             complex_numbers.append(pattern)
                 
     # Now we can do the rest of the complex numbers
