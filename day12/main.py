@@ -52,6 +52,6 @@ def find_paths(paths, possible_paths):
 # Now we can try to find the paths recursively
 possible_paths = []
 find_paths(paths, possible_paths)
-for item in possible_paths:
-    print(item)
+# for item in possible_paths:
+#     print(item)
 print(len(possible_paths))
