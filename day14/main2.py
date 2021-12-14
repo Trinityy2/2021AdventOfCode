@@ -25,7 +25,7 @@ for x in range(len(template)-1):
         no_of_letter[template[x+1]] += 1
 
 # By now we'll have our counts of everything, so we can start adding and modifying
-no_of_steps = 10
+no_of_steps = 40
 for i in range(no_of_steps):
     to_add = []
     for key, value in polymer_count.items():
